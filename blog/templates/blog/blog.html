@@ -43,6 +43,16 @@
       nav{
           background-color: #F3F3F3;
       }
+
+      .card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}
+
     </style>
     <!-- Custom styles for this template -->
     <!-- <link href="album.css" rel="stylesheet"> -->
@@ -50,7 +60,7 @@
   <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-            <a class="navbar-brand" href="#">Kathy Vira Portfolio</a>
+            <a class="navbar-brand" href="../">Kathy Vira Portfolio</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -61,11 +71,11 @@
                   <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
                 </li> -->
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Blog
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item " href="" >Resent Posts</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
@@ -97,21 +107,30 @@
 
 <main role="main">
 
-<h1 class="pt-4 pl-3">Resent Posts</h1>
+<h1 class="pt-4 pl-3 text-center">Resent Posts</h1>
 
   <div class="album py-5 bg-light">
-    <div class="container">
+    <div class="container ">
 
-      <div class="row">
+      <div class="row ">
+
+
+
 
       	{% for post in posts.all %}
-        <div class="col-md-4">
+        <div class="col-md-4 ">
           <div class="card mb-4 shadow-sm">
-          	<p class="card-text">{{ post.title }}</p>
+          	<div class="card-body text-center">
+          		<a href="{{ post.post_id }}"><h5 class="card-title ">{{ post.title }}</h5></a>
+          	</div>
+          	
+            
             <img src="{{ post.event_image.url }}" class="card-img-top" alt="">
+            
             <div class="card-body">
-              <p class="card-text">{{ post.date }}</p>
-              <p class="card-text">{{ post.text }}</p>
+            
+              <p class="card-text small font-weight-light">{{ post.date }}</p>
+              <p class="card-text text-center">{{ post.get_summary }}</p>
 
             </div>
           </div>
@@ -119,9 +138,14 @@
         
 		{% endfor %}
 
+
+
+
       </div>
     </div>
   </div>
+
+
 
 </main>
 
